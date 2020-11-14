@@ -3,20 +3,41 @@
 
 
 {% block body %}
-<h1>Hi</h1>
-{# {{ text }} #}
-<br>
-{{ country }}
-{# {{ num }} #}
-<form action="" method="GET">
-    <input size="15" type="text" id="latbox" name="country" value=""> 
-    <input type="submit" value="submit" />
-</form>
-<br/>
 
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>. . .</h4>
+      <h2>Holiday Application</h2>
+        <br>
+        <form action="?Go="><label for="cars">Country :</label>
+        <select name="country" id=".">
 
-{% for i in num %}
-{{ i }}<br>
-{% endfor %}
+            {% for i in allCountrys %}
+                
+                <option value={{ i[0] }}>{{ i[1] }}</option>
+                
+            {% endfor %}
+
+        </select>
+        <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div class="col-sm-9">
+        <h4><small>RECENT POSTS</small></h4>
+        <hr>
+        
+        <h2>Holidays in this Country: </h2>
+        <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
+        <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
+        <p></p>
+        {% for i in num %}
+            {{ i }}<br>
+        {% endfor %}
+        <br><br>
+    </div>
+</div>      
+      
 
 {% endblock %}

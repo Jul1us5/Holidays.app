@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\Task;
 
 
@@ -20,7 +21,9 @@ class MainController extends AbstractController
      */
     public function getter(Request $request)
     {
-      
+
+
+        // dd($request);
         $num = 1;
         $year = 2022;
         // $country = 'pl';
@@ -33,19 +36,20 @@ class MainController extends AbstractController
         // } else {
         //     $num = $getMonth;
         // }
-  
+
 
         // $str = file_get_contents('https://kayaposoft.com/enrico/json/v2.0?action=getHolidaysForMonth&month=' . $num . '&year=' . $year . '&country=' . $country . '&region=bw&holidayType=public_holiday');
-        $str = file_get_contents('https://kayaposoft.com/enrico/json/v2.0?action=getHolidaysForYear&year=2022&country=' . $getCountry . '&holidayType=public_holiday');
+        $str = file_get_contents('https://kayaposoft.com/enrico/json/v2.0?action=getHolidaysForYear&year=2022&country=lt&holidayType=public_holiday');
         $json = json_decode($str, true);
         // $n = $json[0]['name'][1]['text'];
- 
-        
+
+        // echo $json;
+        // print implode(", ", $json);
 
         // echo $n;
         $holidays = [];
-        for($i = 0; $i < count($json); $i++) {
-
+        for ($i = 0; $i < count($json); $i++) {
+            
             if ($getCountry == '') {
                 $holidays = ['...'];
                 $getCountry = 'Is empty';
@@ -53,18 +57,52 @@ class MainController extends AbstractController
             } else {
                 array_push($holidays, $json[$i]['name'][1]['text']);
             }
-            
         }
 
+        
 
 
-        
-        
-        
-     
 
-        return $this->render('holidays/index.html.twig', array('num' => $holidays, 'country' => $getCountry)); 
+
+        function getAllSuppCountrys()
+        {
+            $str = file_get_contents('https://kayaposoft.com/enrico/json/v2.0?action=getSupportedCountries');
+            $json = json_decode($str, true);
+
+            $countrys = [];
+            for ($i = 0; $i < count($json); $i++) {
+                // array_push($countrys, $json[$i]['countryCode']);
+                array_push($countrys, [$json[$i]['countryCode'],$json[$i]['fullName']]);
+            }
+            return $countrys;
+        }
         
-    }
+
+        function getAllHolidays(Request $request) {
+            $getCountry = $request->query->get('country');
+            $str = file_get_contents('https://kayaposoft.com/enrico/json/v2.0?action=getHolidaysForYear&year=2022&country='. $getCountry .'&holidayType=public_holiday');
+            $json = json_decode($str, true);
+           
+            
+            $holidays = [];
+            for ($i = 0; $i < count($json); $i++) {
+                
+                if ($getCountry == '') {
+                    $holidays = ['...'];
+                    $getCountry = 'Is empty';
+                    break;
+                } else {
+                    array_push($holidays, $json[$i]['name'][1]['text']);
+                }
+            }
+
+            return $holidays;
+        }
     
+
+
+
+
+        return $this->render('holidays/index.html.twig', array('allCountrys' => getAllSuppCountrys(), 'num' => getAllHolidays($request), 'country' => $getCountry));
+    }
 }
