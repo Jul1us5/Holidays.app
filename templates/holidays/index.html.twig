@@ -4,5 +4,19 @@
 
 {% block body %}
 <h1>Hi</h1>
-{{name}}
+{# {{ text }} #}
+<br>
+{{ country }}
+{# {{ num }} #}
+<form action="" method="GET">
+    <input size="15" type="text" id="latbox" name="country" value=""> 
+    <input type="submit" value="submit" />
+</form>
+<br/>
+
+
+{% for i in num %}
+{{ i }}<br>
+{% endfor %}
+
 {% endblock %}
