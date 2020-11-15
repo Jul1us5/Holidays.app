@@ -10,31 +10,34 @@
       <h4>. . .</h4>
       <h2>Holiday Application</h2>
         <br>
-        <form action="?Go="><label for="cars">Country :</label>
+        {# <form action="?c=bih">
+        <label>Country :</label>
         <select name="country" id=".">
 
             {% for i in allCountrys %}
                 
-                <option value={{ i[0] }}>{{ i[1] }}</option>
+                <option name="page" for"1111" value={{ i[0] }}>{{ i[1] }}</option>
                 
             {% endfor %}
 
         </select>
         <input type="submit" value="Submit">
-        </form>
+        </form> #}
     </div>
 
     <div class="col-sm-9">
-        <h4><small>RECENT POSTS</small></h4>
+        <br>
+        <br>
         <hr>
         
-        <h2>Holidays in this Country: </h2>
+        {# <h2>Holidays in this Country: {{name}}</h2> #}
         <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
         <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
         <p></p>
-        {% for i in num %}
+
+        {# {% for i in num %}
             {{ i }}<br>
-        {% endfor %}
+        {% endfor %} #}
         <br><br>
     </div>
 </div>      
