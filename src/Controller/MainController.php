@@ -26,58 +26,58 @@ class MainController extends AbstractController
         
         
 
-        function getName(Request $request) {
-            $getCountry = $request->query->get('country');
+        // function getName(Request $request) {
+        //     $getCountry = $request->query->get('country');
 
-            $str = file_get_contents('https://kayaposoft.com/enrico/json/v2.0?action=getSupportedCountries');
-            $json = json_decode($str, true);
+        //     $str = file_get_contents('https://kayaposoft.com/enrico/json/v2.0?action=getSupportedCountries');
+        //     $json = json_decode($str, true);
 
-            $name = [];
-            for ($i = 0; $i < count($json); $i++) {
-                if($json[$i]['countryCode'] == $getCountry) {
-                    array_push($name, $json[$i]['fullName']);
-                }
-            }
-            return $name;
-        }
+        //     $name = [];
+        //     for ($i = 0; $i < count($json); $i++) {
+        //         if($json[$i]['countryCode'] == $getCountry) {
+        //             array_push($name, $json[$i]['fullName']);
+        //         }
+        //     }
+        //     return $name;
+        // }
 
 
 
-        function getAllSuppCountrys()
-        {
-            $str = file_get_contents('https://kayaposoft.com/enrico/json/v2.0?action=getSupportedCountries');
-            $json = json_decode($str, true);
+        // function getAllSuppCountrys()
+        // {
+        //     $str = file_get_contents('https://kayaposoft.com/enrico/json/v2.0?action=getSupportedCountries');
+        //     $json = json_decode($str, true);
 
-            $countrys = [];
-            for ($i = 0; $i < count($json); $i++) {
-                array_push($countrys, [$json[$i]['countryCode'],$json[$i]['fullName']]);
-            }
-            return $countrys;
-        }
+        //     $countrys = [];
+        //     for ($i = 0; $i < count($json); $i++) {
+        //         array_push($countrys, [$json[$i]['countryCode'],$json[$i]['fullName']]);
+        //     }
+        //     return $countrys;
+        // }
 
-        function getRegionHolidays(Request $request) {
+        // function getRegionHolidays(Request $request) {
             
-            $str = file_get_contents('https://kayaposoft.com/enrico/json/v2.0?action=getSupportedCountries');
-            $json = json_decode($str, true);
+        //     $str = file_get_contents('https://kayaposoft.com/enrico/json/v2.0?action=getSupportedCountries');
+        //     $json = json_decode($str, true);
 
 
-            $regions = [];
+        //     $regions = [];
 
-            for ($i = 0; $i < count($json); $i++) {
+        //     for ($i = 0; $i < count($json); $i++) {
 
-                if(empty($json[$i]['regions'])) {
+        //         if(empty($json[$i]['regions'])) {
 
-                    array_push($regions, []);
+        //             array_push($regions, []);
                     
-                } else {
-                    array_push($regions, $json[$i]['regions']);
-                }
+        //         } else {
+        //             array_push($regions, $json[$i]['regions']);
+        //         }
 
 
-            }    
+        //     }    
 
             
-        }
+        // }
         
 
         function getAllHolidays(Request $request) {
@@ -114,11 +114,11 @@ class MainController extends AbstractController
 
         return $this->render('holidays/index.html.twig', 
         array(
-            'allCountrys' => getAllSuppCountrys(), 
+            // 'allCountrys' => getAllSuppCountrys(), 
             'num1' => getAllHolidays($request), 
-            'num' => getRegionHolidays($request),
-            'regions' => getRegionHolidays($request),
-            'name' => implode(getName($request)))
+            // 'num' => getRegionHolidays($request),
+            // 'regions' => getRegionHolidays($request),
+            // 'name' => implode(getName($request)))
         );
     }
 }
