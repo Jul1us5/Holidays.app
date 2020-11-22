@@ -112,13 +112,14 @@ class MainController extends AbstractController
 
         // dd(getRegionHolidays($request));
 
-        return $this->render('holidays/index.html.twig', 
-        array(
-            // 'allCountrys' => getAllSuppCountrys(), 
-            'num1' => getAllHolidays($request), 
-            // 'num' => getRegionHolidays($request),
-            // 'regions' => getRegionHolidays($request),
-            // 'name' => implode(getName($request)))
-        );
+        return $this->render('holidays/index.html.twig');
     }
 }
+
+// array(
+//     // 'allCountrys' => getAllSuppCountrys(), 
+//     // 'num1' => getAllHolidays($request), 
+//     // 'num' => getRegionHolidays($request),
+//     // 'regions' => getRegionHolidays($request),
+//     // 'name' => implode(getName($request)))
+// );
