@@ -1,0 +1,15 @@
+
+.container {
+    background-color: rgb(231, 231, 231);
+}
+.col-lg-3 {
+    background-color: rgb(134, 134, 134);
+    height: 100vh;
+}
+.col-lg-9 {
+    background-color: rgb(141, 141, 141);
+    height: 100vh;
+}
+nav {
+    height: 60px;
+}
