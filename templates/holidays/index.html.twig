@@ -28,10 +28,13 @@
             <p>
               Search between states by region and year
             </p>
-            <!-- Country -->
 
+            <!-- Country -->
             <select name="country" multiple class="form-control" id="sel2">
+            {# <option value="">...</option> #}
               {% for i in country %}
+
+
                 {% if name[0] == i[0] %}
                   <option value="{{ i[0] }}" class="active" selected>
                     {{ i[1] }}
@@ -41,6 +44,7 @@
                     {{ i[1] }}
                   </option>
                 {% endif %}
+
               {% endfor %}
             </select>
 
@@ -48,11 +52,9 @@
             <select name="year"
               class="form-control"
               id="exampleFormControlSelect1">
+              
               {% for i in year[1] %}
-                  {# <option value="{{ i }}">
-                    {{ i }}
-                  </option> #}
-                  {% if year[0] == i %}
+                {% if year[0] == i %}
                   <option value="{{ i }}" class="active" selected>
                     {{ i }}
                   </option>
@@ -77,29 +79,23 @@
                 class="form-control"
                 id="exampleFormControlSelect1">
                 {% for i in region %}
-                  {# <option value="{{ i }}">
-                    {{ i }}
-                  </option> #}
                   {% if year[2] == i %}
-                  <option value="{{ i }}" class="active" selected>
-                    {{ i }}
-                  </option>
-                {% else %}
-                  <option value="{{ i }}">
-                    {{ i }}
-                  </option>
-                {% endif %}
-
+                    <option value="{{ i }}" class="active" selected>
+                      {{ i }}
+                    </option>
+                  {% else %}
+                    <option value="{{ i }}">
+                      {{ i }}
+                    </option>
+                  {% endif %}
                 {% endfor %}
               </select>
             {% endif %}
 
-            <!-- Email -->
+            <!-- FIND -->
 
-            <!-- Sign in button -->
             <button class="btn btn-info btn-block" type="submit">Find</button>
           </form>
-          <!-- Default form subscription -->
         </div>
       </div>
       <div class="col-lg-9">

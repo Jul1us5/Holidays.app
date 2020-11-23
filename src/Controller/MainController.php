@@ -70,7 +70,13 @@ class MainController extends AbstractController
                     array_push($name, $json[$i]['countryCode']);
                 }
             }
-            return $name;
+
+            if (!empty($name)) {
+                return $name;
+            } else {
+                return [[]];
+            }
+
         }
 
         function getYearAndRegion(Request $request) {
@@ -79,6 +85,7 @@ class MainController extends AbstractController
             $getRegion = $request->query->get('region');
             $years = ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027'];
             $concat = [];
+
             array_push($concat, $getYear);
             array_push($concat, $years);
             array_push($concat, $getRegion);
