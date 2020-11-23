@@ -26,18 +26,33 @@
 
           <select name="country" multiple class="form-control" id="sel2">
             {% for i in country %}
-            <option>{{ i[1] }}</option>
+            <option value="{{ i[0] }}">{{ i[1] }}</option>
             {% endfor %}
           </select>
+
+          {% if region is empty %}
 
           <select
             name="region"
             class="form-control"
             id="exampleFormControlSelect1"
           >
-            <option>Region</option>
-            <option>bw</option>
+            <option value="bw">bw</option>
           </select>
+
+          {% else %}
+
+          <select
+            name="region"
+            class="form-control"
+            id="exampleFormControlSelect1"
+          >
+            {% for i in region %}
+            <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+          </select>
+
+          {% endif %}
 
           <!-- Email -->
           <select
