@@ -6,8 +6,82 @@
     <nav>MAIN</nav>
   </div>
   <div class="row">
-    <div class="col-lg-3">4</div>
-    <div class="col-lg-9">8</div>
+    <div class="col-lg-3">
+      <div class="row">
+        <div class="head">
+          <!-- <span>Search :</span> -->
+        </div>
+      </div>
+      <div class="row">
+        <!-- Default form subscription -->
+        <form
+          class="text-center border border-light p-5"
+          action="http://localhost:8888/Applications/Holidays/public/"
+        >
+          <h1 class="h4 mb-4">Holidays Application</h1>
+
+          <p>Below are lists of public holidays by country or region.</p>
+          <p>Search between states by region and year</p>
+          <!-- Name -->
+
+          <select name="country" multiple class="form-control" id="sel2">
+            {% for i in country %}
+            <option value="{{ i[0] }}">{{ i[1] }}</option>
+            {% endfor %}
+          </select>
+
+          {% if region is empty %}
+
+          <select
+            name="region"
+            class="form-control"
+            id="exampleFormControlSelect1"
+          >
+            <option value="bw">bw</option>
+          </select>
+
+          {% else %}
+
+          <select
+            name="region"
+            class="form-control"
+            id="exampleFormControlSelect1"
+          >
+            {% for i in region %}
+            <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+          </select>
+
+          {% endif %}
+
+          <!-- Email -->
+          <select
+            name="year"
+            class="form-control"
+            id="exampleFormControlSelect1"
+          >
+            <option>Year</option>
+            <option>2020</option>
+            <option>2021</option>
+            <option>2022</option>
+            <option>2023</option>
+            <option>2024</option>
+          </select>
+
+          <!-- Sign in button -->
+          <button class="btn btn-info btn-block" type="submit">Find</button>
+        </form>
+        <!-- Default form subscription -->
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <div class="result">
+        <h4>Holidays in this Country: ...</h4>
+      </div>
+      <div class="row">
+        <span>...</span>
+      </div>
+    </div>
   </div>
 </div>
 
