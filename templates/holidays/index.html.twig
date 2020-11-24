@@ -31,10 +31,8 @@
 
             <!-- Country -->
             <select name="country" multiple class="form-control" id="sel2">
-            {# <option value="">...</option> #}
+              {# <option value="">...</option> #}
               {% for i in country %}
-
-
                 {% if name[0] == i[0] %}
                   <option value="{{ i[0] }}" class="active" selected>
                     {{ i[1] }}
@@ -44,7 +42,6 @@
                     {{ i[1] }}
                   </option>
                 {% endif %}
-
               {% endfor %}
             </select>
 
@@ -52,9 +49,8 @@
             <select name="year"
               class="form-control"
               id="exampleFormControlSelect1">
-              
-              {% for i in year[1] %}
-                {% if year[0] == i %}
+              {% for i in yearRegion[1] %}
+                {% if yearRegion[0] == i %}
                   <option value="{{ i }}" class="active" selected>
                     {{ i }}
                   </option>
@@ -66,20 +62,24 @@
               {% endfor %}
             </select>
 
+            {# {% if foo is empty %}
+                ...
+            {% endif %} #}
+
             {% if region is empty %}
-              <select name="region"
+              {# <select name="region"
                 class="form-control"
                 id="exampleFormControlSelect1">
                 <option value="bw">
                   bw
                 </option>
-              </select>
+              </select> #}
             {% else %}
               <select name="region"
                 class="form-control"
                 id="exampleFormControlSelect1">
                 {% for i in region %}
-                  {% if year[2] == i %}
+                  {% if yearRegion[2] == i %}
                     <option value="{{ i }}" class="active" selected>
                       {{ i }}
                     </option>
@@ -101,11 +101,19 @@
       <div class="col-lg-9">
         <div class="result">
           <h4>
-            Holidays in this Country: ...
+            Holidays in this Country: {{ name[1] }}
           </h4>
         </div>
         <div class="row">
-          <span>...</span>
+          {% for i in holidays %}
+            <span>{{ i[0] }}</span>
+          {% endfor %}
+
+          {% if holidays is empty %}
+            <div class="alert warr" role="alert">
+              Select a region
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>

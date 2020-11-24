@@ -34,8 +34,14 @@ p {
     padding: 10px 0px;
     border-bottom: 1px solid rgba(61, 184, 255, 0.185);
 }
-.active {
+/* .active {
     background-color: rgba(61, 184, 255, 0.5);
+} */
+.warr {
+    width: 200px;
+    height: 100px;
+    color: red;
+
 }
 .form {
     padding: 30px 10px 0px 10px;

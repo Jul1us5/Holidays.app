@@ -68,9 +68,9 @@ class MainController extends AbstractController
                 if($json[$i]['countryCode'] == $getCountry) {
                     
                     array_push($name, $json[$i]['countryCode']);
+                    array_push($name, $json[$i]['fullName']);
                 }
             }
-
             if (!empty($name)) {
                 return $name;
             } else {
@@ -89,8 +89,40 @@ class MainController extends AbstractController
             array_push($concat, $getYear);
             array_push($concat, $years);
             array_push($concat, $getRegion);
-            // dd($concat);
+
             return $concat;
+        }
+        function getAllHolidays(Request $request) {
+
+ 
+                $getCountry = $request->query->get('country');
+                $getRegion = $request->query->get('region');
+                $getYear = $request->query->get('year');
+            
+                if(!isset($getCountry)) {
+                    $getCountry = 'lt';
+                }
+                if(!isset($getRegion)) {
+                    $getRegion = '';
+                }
+                if(!isset($getYear)) {
+                    $getYear = '2020';
+                }
+
+            $str = file_get_contents('https://kayaposoft.com/enrico/json/v2.0?action=getHolidaysForYear&year='. $getYear .'&region='. $getRegion .'&country='. $getCountry .'&holidayType=public_holiday');
+            $json = json_decode($str, true);
+            
+            $holidays = [];
+
+            for ($i = 0; $i < count($json); $i++) {
+                
+        
+                array_push($holidays, [$json[$i]['name'][0]['text'],$json[0]['date']]);
+                
+            }
+            
+            return $holidays;
+
         }
 
 
@@ -98,7 +130,8 @@ class MainController extends AbstractController
             'country' => getAllSuppCountrys(), 
             'region' => getRegions($request),
             'name' => getName($request),
-            'year' => getYearAndRegion($request),
+            'yearRegion' => getYearAndRegion($request),
+            'holidays' => getAllHolidays($request),
         
         ));
     }
