@@ -113,16 +113,33 @@ class MainController extends AbstractController
             $json = json_decode($str, true);
             
             $holidays = [];
+            $totalHolidays = 0;
 
             for ($i = 0; $i < count($json); $i++) {
                 
-        
-                array_push($holidays, [$json[$i]['name'][0]['text'],$json[0]['date']]);
+
+                $totalHolidays = count($json);
+                
+                if(isset($json[$i]['name'][0]['text'])) {
+                    array_push($holidays, [$json[$i]['name'][0]['text'],$json[$i]['date']]);
+                } else {
+                    $getRegion = '';
+                }
                 
             }
-            
+            // array_push($holidays, $totalHolidays);
+            // dd($holidays);
+
             return $holidays;
 
+        }
+
+        function getAllStatus(Request $request) {
+
+            $amm = getAllHolidays($request);
+
+            // dd($amm);
+            return $amm;
         }
 
 
@@ -132,6 +149,7 @@ class MainController extends AbstractController
             'name' => getName($request),
             'yearRegion' => getYearAndRegion($request),
             'holidays' => getAllHolidays($request),
+            'status' => getAllStatus($request),
         
         ));
     }

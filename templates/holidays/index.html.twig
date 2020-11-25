@@ -62,25 +62,15 @@
               {% endfor %}
             </select>
 
-            {# {% if foo is empty %}
-                ...
-            {% endif %} #}
-
             {% if region is empty %}
-              {# <select name="region"
-                class="form-control"
-                id="exampleFormControlSelect1">
-                <option value="bw">
-                  bw
-                </option>
-              </select> #}
+
             {% else %}
               <select name="region"
                 class="form-control"
                 id="exampleFormControlSelect1">
                 {% for i in region %}
                   {% if yearRegion[2] == i %}
-                    <option value="{{ i }}" class="active" selected>
+                    <option value="{{ i }}" selected>
                       {{ i }}
                     </option>
                   {% else %}
@@ -106,7 +96,21 @@
         </div>
         <div class="row">
           {% for i in holidays %}
-            <span>{{ i[0] }}</span>
+            {# <div class="holiday"> #}
+                   {# <span> #}
+            {# <span>{{ i[0] }}</span>
+            <span>day: {{ i[1]['day'] }}</span>
+            <span>month: {{ i[1]['month'] }}</span> #}
+
+            <div class="container-fluid">
+              <h5>{{ i[0] }}</h5>
+              <span>{{ i[1]['year'] }}.{{ i[1]['month'] }}.{{ i[1]['day'] }}</span>
+            </div>
+            
+            
+            {# </span> #}
+            {# </div> #}
+    
           {% endfor %}
 
           {% if holidays is empty %}
