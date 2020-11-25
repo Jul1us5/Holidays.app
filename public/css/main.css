@@ -40,9 +40,11 @@ select {
     margin-bottom: 2px;
     padding-bottom: 5px;
 }
-/* span {
-    padding-bottom: -15px;
-} */
+.date {
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    padding: 5px 0px;
+}
 p {
     padding: 10px 0px;
     /* border-bottom: 1px solid rgba(61, 184, 255, 0.185); */
