@@ -113,12 +113,12 @@ class MainController extends AbstractController
             $json = json_decode($str, true);
             
             $holidays = [];
-            $totalHolidays = 0;
+            // $totalHolidays = 0;
 
             for ($i = 0; $i < count($json); $i++) {
                 
 
-                $totalHolidays = count($json);
+                // $totalHolidays = count($json);
                 
                 if(isset($json[$i]['name'][0]['text'])) {
                     array_push($holidays, [$json[$i]['name'][0]['text'],$json[$i]['date']]);
@@ -136,10 +136,31 @@ class MainController extends AbstractController
 
         function getAllStatus(Request $request) {
 
-            $amm = getAllHolidays($request);
+            $getCountry = $request->query->get('country');
 
-            // dd($amm);
-            return $amm;
+            $date = date("d-m-Y");
+            $dateP = date("Y.m.d");
+
+            $str = file_get_contents('https://kayaposoft.com/enrico/json/v2.0?action=isWorkDay&date='. $date .'&country='. $getCountry .'');
+            $json = json_decode($str, true);
+
+            $amount = getAllHolidays($request);
+
+            if ($json['isWorkDay']) {
+                $json['isWorkDay'] = 'Is Work day';
+            } else {
+                $json['isWorkDay'] = 'Free Day!';
+            }
+
+
+            $status = [];
+
+
+            array_push($status, count($amount),$dateP,$json['isWorkDay']);
+        
+
+            // dd($status);
+            return $status;
         }
 
 
